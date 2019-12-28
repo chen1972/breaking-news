@@ -30,7 +30,29 @@
         </div>
 
     </div>
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <script>
+        $('.input_sub').click(function (e) {
+            e.preventDefault()
+            var uname = $('.input_txt').val()
+            var pass = $('.input_pass').val()
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:8000/admin/login',
+                data: { user_name: uname, password: pass },
+                success: function (res) {
+                    alert(res.msg)
+                    if (res.code == 200) {
+                        location.href = 'index.html'
+                    }
 
+                }
+            })
+
+
+        })
+
+    </script>
 </body>
 
 </html>
