@@ -110,24 +110,15 @@
         }
 
     </script>
-
+    <script src="./utils/config.js"></script>
+    <script src="./utils/user.js"></script>
     <script>
         //退出登录功能
-        $('.icon-tuichu').parent('a').on('click', function () {
-            $.post('http://localhost:8000/admin/logout', function (res) {
-                alert(res.msg)
-                if (res.code === 200) {
-                    location.href = 'login.html'
-                }
-            })
-        })
+        user.logout()
         //获取管理员信息
-        $.get('http://localhost:8000/admin/getuser', function (res) {
-            console.log(res);
-
-            $('.user_info').children('img').attr('src', res.data.user_pic).siblings('span').html('欢迎&nbsp;&nbsp;' + res.data.nickname)
-            $('.user_center_link').children('img').attr('src', res.data.user_pic)
-        })
+        // var userpic = $('.user_info')
+        // var username = $('.user_center_link')
+        user.userinformation()
 
     </script>
 
