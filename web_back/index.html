@@ -114,11 +114,17 @@
     <script src="./utils/user.js"></script>
     <script>
         //退出登录功能
-        user.logout()
+        $('.icon-tuichu').parent('a').on('click', function () {
+            user.logout()
+        })
+
         //获取管理员信息
         // var userpic = $('.user_info')
         // var username = $('.user_center_link')
-        user.userinformation()
+        user.userinformation(function (res) {
+            $('.user_info').children('img').attr('src', res.data.user_pic).siblings('span').html('欢迎&nbsp;&nbsp;' + res.data.nickname)
+            $('.user_center_link').children('img').attr('src', res.data.user_pic)
+        })
 
     </script>
 
