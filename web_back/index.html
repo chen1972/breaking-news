@@ -115,7 +115,13 @@
     <script>
         //退出登录功能
         $('.icon-tuichu').parent('a').on('click', function () {
-            user.logout()
+            user.logout(function(res){
+                alert(res.msg)
+            if (res.code === 200) {
+                location.href = 'login.html'
+            }
+        
+            })
         })
 
         //获取管理员信息

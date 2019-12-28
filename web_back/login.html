@@ -38,7 +38,12 @@
             e.preventDefault()
             var uname = $('.input_txt').val()
             var pass = $('.input_pass').val()
-            user.login(uname, pass)
+            user.login(uname, pass, function (res) {
+                alert(res.msg)
+                if (res.code == 200) {
+                    location.href = 'index.html'
+                }
+            })
         })
 
     </script>
