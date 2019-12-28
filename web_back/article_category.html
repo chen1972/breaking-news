@@ -96,20 +96,38 @@
     </script>
     <script src="./utils/config.js"></script>
     <script src="./utils/category.js"></script>
+    <script src="./js/template-web.js"></script>
+    <script type="text/html" id="informarion">
+        {{each data value key}}
+         <tr>
+            <td>{{value.name}}</td>
+            <td>{{value.slug}}</td>
+            <td class="text-center">
+                <a href="javascript:editTr({&quot;id&quot;:&quot;1&quot;,&quot;slug&quot;:&quot;uncategorized&quot;,&quot;name&quot;:&quot;未分类&quot;});"
+                    class="btn btn-info btn-xs">编辑</a>
+                <a href="javascript:deleteTr( 1 );" class="btn btn-danger btn-xs">删除</a>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
     <script>
         var str = '';
         category.show(function (res) {
-            // console.log(res);
-            res.data.forEach(function (item) {
-                str += `   <tr>
-                        <td>${item.name}</td>
-                        <td>${item.slug}</td>
-                        <td class="text-center">
-                            <a href="javascript:editTr({&quot;id&quot;:&quot;1&quot;,&quot;slug&quot;:&quot;uncategorized&quot;,&quot;name&quot;:&quot;未分类&quot;});"
-                                class="btn btn-info btn-xs">编辑</a>
-                            <a href="javascript:deleteTr( 1 );" class="btn btn-danger btn-xs">删除</a>
-                        </td>
-                    </tr>`
+            console.log(res);
+            // res.data.forEach(function (item) {
+            //     str += `   <tr>
+            //             <td>${item.name}</td>
+            //             <td>${item.slug}</td>
+            //             <td class="text-center">
+            //                 <a href="javascript:editTr({&quot;id&quot;:&quot;1&quot;,&quot;slug&quot;:&quot;uncategorized&quot;,&quot;name&quot;:&quot;未分类&quot;});"
+            //                     class="btn btn-info btn-xs">编辑</a>
+            //                 <a href="javascript:deleteTr( 1 );" class="btn btn-danger btn-xs">删除</a>
+            //             </td>
+            //         </tr>`
+            // })
+            // $('tbody').html(str)
+            var str = template('informarion', {
+                data: res.data
             })
             $('tbody').html(str)
         })
